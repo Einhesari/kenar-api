@@ -24,6 +24,8 @@ class OauthResourceType(str, Enum):
 
     BUSINESS_ADDON_CREATE = "BUSINESS_ADDON_CREATE"
 
+    POST_EDIT = "POST_EDIT"
+
 
 class AccessTokenResponse(BaseModel):
     access_token: str
