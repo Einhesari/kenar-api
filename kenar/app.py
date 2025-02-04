@@ -50,7 +50,7 @@ from kenar.oauth import OAuthAccessTokenRequest, AccessTokenResponse
 from kenar.oauth import Scope, SendChatMessageResourceIdParams
 from kenar.request import retry
 
-from post import EditPostRequest, EditPostResponse
+from kenar.post import EditPostRequest, EditPostResponse
 
 ACCESS_TOKEN_HEADER_NAME = "x-access-token"
 
