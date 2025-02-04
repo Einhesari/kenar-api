@@ -50,6 +50,8 @@ from kenar.oauth import OAuthAccessTokenRequest, AccessTokenResponse
 from kenar.oauth import Scope, SendChatMessageResourceIdParams
 from kenar.request import retry
 
+from post import EditPostRequest, EditPostResponse
+
 ACCESS_TOKEN_HEADER_NAME = "x-access-token"
 
 
@@ -65,11 +67,11 @@ class ChatService:
         self._client = client
 
     def set_notify_chat_post_conversations(
-        self,
-        access_token: str,
-        data: SetNotifyChatPostConversationsRequest,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            access_token: str,
+            data: SetNotifyChatPostConversationsRequest,
+            max_retry=3,
+            retry_delay=1,
     ) -> SetNotifyChatPostConversationsResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -83,11 +85,11 @@ class ChatService:
         return SetNotifyChatPostConversationsResponse()
 
     def send_message(
-        self,
-        access_token: str,
-        data: SendMessageV2Request,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            access_token: str,
+            data: SendMessageV2Request,
+            max_retry=3,
+            retry_delay=1,
     ) -> SendMessageV2Response:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -106,10 +108,10 @@ class FinderService:
         self._client = client
 
     def search_post(
-        self,
-        data: SearchPostRequest,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            data: SearchPostRequest,
+            max_retry=3,
+            retry_delay=1,
     ) -> SearchPostResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -121,10 +123,10 @@ class FinderService:
         return SearchPostResponse(**rsp.json())
 
     def get_post(
-        self,
-        data: GetPostRequest,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            data: GetPostRequest,
+            max_retry=3,
+            retry_delay=1,
     ) -> GetPostResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -138,11 +140,11 @@ class FinderService:
         return GetPostResponse(**rsp.json())
 
     def get_user(
-        self,
-        access_token: str,
-        data: GetUserRequest = None,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            access_token: str,
+            data: GetUserRequest = None,
+            max_retry=3,
+            retry_delay=1,
     ):
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -156,11 +158,11 @@ class FinderService:
         return GetUserResponse(**rsp.json())
 
     def get_user_posts(
-        self,
-        access_token: str,
-        data: Optional[GetUserPostsRequest] = None,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            access_token: str,
+            data: Optional[GetUserPostsRequest] = None,
+            max_retry=3,
+            retry_delay=1,
     ):
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -179,11 +181,11 @@ class AddonService:
         self._client = client
 
     def create_user_addon(
-        self,
-        access_token: str,
-        data: CreateUserAddonRequest,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            access_token: str,
+            data: CreateUserAddonRequest,
+            max_retry=3,
+            retry_delay=1,
     ) -> CreateUserAddonResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -197,10 +199,10 @@ class AddonService:
         return CreateUserAddonResponse(**rsp.json())
 
     def delete_user_addon(
-        self,
-        data: DeleteUserAddonRequest,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            data: DeleteUserAddonRequest,
+            max_retry=3,
+            retry_delay=1,
     ) -> DeletePostAddonResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -213,10 +215,10 @@ class AddonService:
         return DeletePostAddonResponse()
 
     def get_user_addons(
-        self,
-        data: GetUserAddonsRequest,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            data: GetUserAddonsRequest,
+            max_retry=3,
+            retry_delay=1,
     ) -> GetUserAddonsResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -229,11 +231,11 @@ class AddonService:
         return GetUserAddonsResponse(**rsp.json())
 
     def create_post_addon(
-        self,
-        access_token: str,
-        data: CreatePostAddonRequest,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            access_token: str,
+            data: CreatePostAddonRequest,
+            max_retry=3,
+            retry_delay=1,
     ) -> CreatePostAddonResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -247,10 +249,10 @@ class AddonService:
         return CreatePostAddonResponse()
 
     def delete_post_addon(
-        self,
-        data: DeletePostAddonRequest,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            data: DeletePostAddonRequest,
+            max_retry=3,
+            retry_delay=1,
     ) -> DeletePostAddonResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -263,10 +265,10 @@ class AddonService:
         return DeletePostAddonResponse()
 
     def upload_image(
-        self,
-        path: str,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            path: str,
+            max_retry=3,
+            retry_delay=1,
     ) -> UploadImageResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -282,10 +284,10 @@ class AddonService:
         return UploadImageResponse(**rsp.json())
 
     def get_post_addons(
-        self,
-        data: GetPostAddonsRequest,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            data: GetPostAddonsRequest,
+            max_retry=3,
+            retry_delay=1,
     ) -> GetPostAddonsResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -303,9 +305,9 @@ class AssetService:
         self._client = client
 
     def get_categories(
-        self,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            max_retry=3,
+            retry_delay=1,
     ) -> GetCategoriesResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -318,9 +320,9 @@ class AssetService:
         return GetCategoriesResponse(**rsp.json())
 
     def get_cities(
-        self,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            max_retry=3,
+            retry_delay=1,
     ) -> GetCitiesResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -333,9 +335,9 @@ class AssetService:
         return GetCitiesResponse(**rsp.json())
 
     def get_districts(
-        self,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            max_retry=3,
+            retry_delay=1,
     ) -> GetDistrictsResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -348,10 +350,10 @@ class AssetService:
         return GetDistrictsResponse(**rsp.json())
 
     def get_city_districts(
-        self,
-        city: str,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            city: str,
+            max_retry=3,
+            retry_delay=1,
     ) -> GetDistrictsResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -364,10 +366,10 @@ class AssetService:
         return GetDistrictsResponse(**rsp.json())
 
     def get_brand_models(
-        self,
-        category: Literal["light", "mobile-phones"],
-        max_retry=3,
-        retry_delay=1,
+            self,
+            category: Literal["light", "mobile-phones"],
+            max_retry=3,
+            retry_delay=1,
     ) -> GetBrandModelsResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -380,10 +382,10 @@ class AssetService:
         return GetBrandModelsResponse(**rsp.json())
 
     def get_colors(
-        self,
-        category: Literal["light", "mobile-phones"],
-        max_retry=3,
-        retry_delay=1,
+            self,
+            category: Literal["light", "mobile-phones"],
+            max_retry=3,
+            retry_delay=1,
     ) -> GetColorsResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -396,9 +398,9 @@ class AssetService:
         return GetColorsResponse(**rsp.json())
 
     def get_mobile_internal_storages(
-        self,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            max_retry=3,
+            retry_delay=1,
     ) -> GetMobileInternalStoragesResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -411,9 +413,9 @@ class AssetService:
         return GetMobileInternalStoragesResponse(**rsp.json())
 
     def get_mobile_ram_memories(
-        self,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            max_retry=3,
+            retry_delay=1,
     ) -> GetMobileRamMemoriesResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -426,9 +428,9 @@ class AssetService:
         return GetMobileRamMemoriesResponse(**rsp.json())
 
     def get_light_body_status(
-        self,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            max_retry=3,
+            retry_delay=1,
     ) -> GetLightBodyStatusResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -466,10 +468,10 @@ class OAuthService:
         )
 
     def get_access_token(
-        self,
-        authorization_token: str,
-        max_retry=3,
-        retry_delay=1,
+            self,
+            authorization_token: str,
+            max_retry=3,
+            retry_delay=1,
     ) -> AccessTokenResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
@@ -493,6 +495,21 @@ class OAuthService:
             f"{params.user_id}:{params.post_token}:{params.peer_id}".encode("utf-8")
         ).decode("utf-8")
 
+
+class PostService:
+    def __init__(self, client):
+        self._client = client
+
+    def edit_post(self, access_token, post_token, edit_post_request: EditPostRequest):
+        def send_request():
+            return self._client.put(
+                url=f"/v1/open-platform/post/{post_token}",
+                json=edit_post_request.dict_excluding_none(),
+                headers={ACCESS_TOKEN_HEADER_NAME: access_token}
+            )
+
+        send_request()
+        return EditPostResponse()
 
 class Client:
     def __init__(self, conf: ClientConfig):
