@@ -14,3 +14,10 @@ class EditPostRequest(BaseModel):
 
 class EditPostResponse(BaseModel):
     pass
+
+
+class GetUploadUrlResponse(BaseModel):
+    upload_url: str
+
+class UploadPostImageResponse(BaseModel):
+    path: str

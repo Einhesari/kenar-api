@@ -52,6 +52,8 @@ from kenar.request import retry
 
 from kenar.post import EditPostRequest, EditPostResponse
 
+from post import GetUploadUrlResponse
+
 ACCESS_TOKEN_HEADER_NAME = "x-access-token"
 
 
@@ -510,6 +512,23 @@ class PostService:
 
         send_request()
         return EditPostResponse()
+
+    def upload_image(self, image_path):
+        def get_upload_url():
+            upload_url_response = self._client.get(url="/v1/open-platform/post/image-upload-url")
+            return GetUploadUrlResponse(**upload_url_response.json())
+
+        def get_image_content():
+            get_image_response = self._client.get(image_path, stream=True)
+            get_image_response.raise_for_status()
+            return get_image_response.content
+
+        def send_request():
+            return self._client.post(get_upload_url().upload_url, headers={"Content-Type": "image/jpeg"},
+                                     content=get_image_content())
+
+        response = send_request()
+        return UploadImageResponse(**response.json())
 
 
 class Client:
