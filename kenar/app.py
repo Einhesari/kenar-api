@@ -511,6 +511,7 @@ class PostService:
         send_request()
         return EditPostResponse()
 
+
 class Client:
     def __init__(self, conf: ClientConfig):
         if not conf.api_key:
@@ -545,6 +546,7 @@ class Client:
         self._chat = ChatService(self._client)
         self._addon = AddonService(self._client)
         self._asset = AssetService(self._client)
+        self._post = PostService(self._client)
 
     @property
     def chat(self):
@@ -589,6 +591,10 @@ class Client:
     @property
     def asset(self):
         return self._asset
+
+    @property
+    def client(self):
+        return self._post
 
     @asset.setter
     def asset(self, service: AssetService):
