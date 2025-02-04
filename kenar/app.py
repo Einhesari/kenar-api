@@ -593,7 +593,7 @@ class Client:
         return self._asset
 
     @property
-    def client(self):
+    def post(self):
         return self._post
 
     @asset.setter
