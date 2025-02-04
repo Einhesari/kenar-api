@@ -50,9 +50,7 @@ from kenar.oauth import OAuthAccessTokenRequest, AccessTokenResponse
 from kenar.oauth import Scope, SendChatMessageResourceIdParams
 from kenar.request import retry
 
-from kenar.post import EditPostRequest, EditPostResponse
-
-from post import GetUploadUrlResponse
+from kenar.post import EditPostRequest, EditPostResponse, GetUploadUrlResponse, UploadPostImageResponse
 
 ACCESS_TOKEN_HEADER_NAME = "x-access-token"
 
@@ -528,7 +526,7 @@ class PostService:
                                      content=get_image_content())
 
         response = send_request()
-        return UploadImageResponse(**response.json())
+        return UploadPostImageResponse(**response.json())
 
 
 class Client:
