@@ -508,16 +508,7 @@ class PostService:
                 headers={ACCESS_TOKEN_HEADER_NAME: access_token}
             )
 
-        print("Sending PUT request")
-        print(f"Payload: {edit_post_request.dict_excluding_none()}")
-        response = send_request()
-
-        if response.status_code == 200:
-            print("Request successful:", response.json())
-        else:
-            print("Request failed with status code:", response.status_code)
-            print("Response body:", response.text)
-
+        send_request()
         return EditPostResponse()
 
 
