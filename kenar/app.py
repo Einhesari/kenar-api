@@ -125,15 +125,21 @@ class FinderService:
     def get_post(
             self,
             data: GetPostRequest,
+            access_token: str = None,
             max_retry=3,
             retry_delay=1,
     ) -> GetPostResponse:
         @retry(max_retries=max_retry, delay=retry_delay)
         def send_request():
+            headers = {}
+            if access_token:
+                headers[ACCESS_TOKEN_HEADER_NAME] = access_token
+
             return self._client.request(
                 method="GET",
                 url=f"/v1/open-platform/finder/post/{data.token}",
                 content=data.json(),
+                headers=headers
             )
 
         rsp = send_request()
