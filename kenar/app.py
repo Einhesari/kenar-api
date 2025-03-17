@@ -1,4 +1,5 @@
 import base64
+import os
 import urllib.parse
 from importlib.metadata import version
 from typing import List, Optional, Literal
@@ -520,13 +521,11 @@ class PostService:
     def upload_image(self, image_content):
         def get_upload_url():
             upload_url_response = self._client.get(url="/v1/open-platform/post/image-upload-url")
-            url = GetUploadUrlResponse(**upload_url_response.json()).upload_url
-            print("got_upload_url:" + url)
-            return url
+            return GetUploadUrlResponse(**upload_url_response.json()).upload_url
 
         def send_request(upload_url):
-            return self._client.post(upload_url, headers={"Content-Type": "image/jpeg"},
-                                     content=image_content)
+            return httpx.post(upload_url, content=image_content,
+                       headers={"Content-Type": "image/jpeg", "x-api-key": os.environ.get("KENAR_API_KEY")})
 
         response = send_request(get_upload_url())
         return UploadPostImageResponse(**response.json())
