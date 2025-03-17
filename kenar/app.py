@@ -520,13 +520,15 @@ class PostService:
     def upload_image(self, image_content):
         def get_upload_url():
             upload_url_response = self._client.get(url="/v1/open-platform/post/image-upload-url")
-            return GetUploadUrlResponse(**upload_url_response.json())
+            url = GetUploadUrlResponse(**upload_url_response.json()).upload_url
+            print("got_upload_url:" + url)
+            return url
 
-        def send_request():
-            return self._client.post(get_upload_url().upload_url, headers={"Content-Type": "image/jpeg"},
+        def send_request(upload_url):
+            return self._client.post(upload_url, headers={"Content-Type": "image/jpeg"},
                                      content=image_content)
 
-        response = send_request()
+        response = send_request(get_upload_url())
         return UploadPostImageResponse(**response.json())
 
 
